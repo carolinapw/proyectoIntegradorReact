@@ -1,7 +1,6 @@
 import { Switch, Route} from 'react-router-dom';
 import Home from "./screens/Home/Home.js";
 
-
 function App() {
   return (
     <div className="App">
