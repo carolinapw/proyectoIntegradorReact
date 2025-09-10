@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 import CardList from '../../components/CardList/CardList.js'
+import Footer from '../../components/Footer/Footer.js';
 // import Loader from "../../components/Loader"
-
 // import Header
-// import Footer
-// import Home.css
 
 class Home extends Component {
     constructor (props){
@@ -79,6 +77,7 @@ class Home extends Component {
                 type="tv"
                 seeAllTo="/series?section=airing_today"
             />
+            <Footer />
             </>
         )
     }

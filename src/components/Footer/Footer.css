@@ -1,0 +1,12 @@
+.footer {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-left: 5px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+  }
+.integrantes {
+    color: #C4C4C4;
+    margin: 5px 9px;
+  }
