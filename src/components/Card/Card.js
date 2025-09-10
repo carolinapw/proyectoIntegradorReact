@@ -1,18 +1,19 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import "./Card.css";
 
 const img = "https://image.tmdb.org/t/p/w342"
 
 class Card extends Component {
     constructor(props) {
         super(props);
-        this.state = { verMas: false, textoBoton: "ver descripción" }
+        this.state = { verMas: false, textoBoton: "Ver descripción" }
     }
     
     botonVerMas = () => {
         this.setState((p) => ({
             verMas: !p.verMas,
-            textoBoton: p.textoBoton === "ver descripción" ? "ocultar descripción" : "ver descripción",
+            textoBoton: p.textoBoton === "Ver descripción" ? "Ocultar descripción" : "Ver descripción",
         }));
     };
 

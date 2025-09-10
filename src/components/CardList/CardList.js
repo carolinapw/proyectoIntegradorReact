@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Card from "../Card/Card";
-// import CardList.css
+import "./CardList.css";
 
 class CardList extends Component {
     render() {
@@ -11,7 +11,7 @@ class CardList extends Component {
       <section className="group">
         <header className="group-header">
             <h3>{title}</h3>
-            {seeAllTo && <Link to={seeAllTo}>Ver todas</Link>}
+            {seeAllTo && <Link className="seeAll" to={seeAllTo}>Ver todas</Link>}
         </header>
 
         <div className="grid">
