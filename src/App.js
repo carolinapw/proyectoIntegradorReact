@@ -6,6 +6,8 @@ function App() {
     <div className="App">
       <Switch>
           <Route path='/' exact={true} component={Home}/>
+          {/* <Route path="/movie/:id" component={Detail} />
+          <Route path="/tv/:id" component={Detail} /> */}
       </Switch>
     </div>
   );

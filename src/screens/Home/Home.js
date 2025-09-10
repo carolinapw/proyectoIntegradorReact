@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import CardList from '../../components/CardList/CardList.js'
+// import Loader from "../../components/Loader"
+
 // import Header
 // import Footer
 // import Home.css
@@ -6,11 +9,13 @@ import React, {Component} from 'react';
 class Home extends Component {
     constructor (props){
         super(props)
-        this.state ={
+        this.state ={ // Guarda los rdos del fetch en el estado
             peliculasPopulares: [],
             peliculasCartelera: [],
             seriesPopulares: [], 
-            seriesHoy: []
+            seriesHoy: [], 
+            cargando: true,
+            error: null,
         }
     }
 
@@ -45,27 +50,37 @@ class Home extends Component {
     }
 
     render() {
-        let { peliculasPopulares, peliculasCartelera, seriesPopulares, seriesHoy } = this.state;
+        //if (this.state.cargando) return <Loader />; // o un <p>Cargando…</p>
+        if (this.state.error) return <p className="error">Error: {this.state.error}</p>;
+
         return (
             <>
-            <section>
-                <h2>Películas populares</h2>
-                <article>
-                    {
-                        peliculasPopulares.map((p, idx) => (
-                            <CardList>
-                                key={p + idx}
-                                id={p.id}
-                                name={p.name}
-                                img={p.img}
-                            </CardList>
-                            )
-                        )
-                    }
-                </article>
-            </section>
-
+            <CardList
+                title="Películas más populares"
+                items={this.state.peliculasPopulares} // array de resultados que devuelve TMDB en cada fetch
+                type="movie"
+                seeAllTo="/movies?section=popular"
+            />
+            <CardList
+                title="Películas en cartelera"
+                items={this.state.peliculasCartelera}
+                type="movie"
+                seeAllTo="/movies?section=now_playing"
+            />
+            <CardList
+                title="Series populares"
+                items={this.state.seriesPopulares}
+                type="tv"
+                seeAllTo="/series?section=popular"
+            />
+            <CardList
+                title="Series al aire hoy"
+                items={this.state.seriesHoy}
+                type="tv"
+                seeAllTo="/series?section=airing_today"
+            />
             </>
         )
     }
 }
+export default Home
