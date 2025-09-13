@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import CardList from '../../components/CardList/CardList.js'
-import Footer from '../../components/Footer/Footer.js';
 // import Loader from "../../components/Loader"
 // import Header
 
@@ -55,29 +54,28 @@ class Home extends Component {
             <>
             <CardList
                 title="Películas más populares"
-                items={this.state.peliculasPopulares} // array de resultados que devuelve TMDB en cada fetch
+                items={this.state.peliculasPopulares.slice(0, 5)} // array de resultados que devuelve TMDB en cada fetch
                 type="movie"
                 seeAllTo="/movies/popular"
             />
             <CardList
                 title="Películas en cartelera"
-                items={this.state.peliculasCartelera}
+                items={this.state.peliculasCartelera.slice(0, 5)}
                 type="movie"
                 seeAllTo="/movies/now-playing"
             />
             <CardList
                 title="Series populares"
-                items={this.state.seriesPopulares}
+                items={this.state.seriesPopulares.slice(0, 5)}
                 type="tv"
                 seeAllTo="/series/popular"
             />
             <CardList
                 title="Series al aire hoy"
-                items={this.state.seriesHoy}
+                items={this.state.seriesHoy.slice(0, 5)}
                 type="tv"
                 seeAllTo="/series/airing-today"
             />
-            <Footer />
             </>
         )
     }

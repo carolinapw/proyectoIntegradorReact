@@ -25,7 +25,7 @@ class ListScreen extends Component {
             .then(r => r.json())
             .then(data => 
                 this.setState({
-                    items: data.results || [],
+                    items: data.results,
                     cargando: false,
                     page: 1
                 }))
@@ -41,7 +41,7 @@ class ListScreen extends Component {
             .then(r => r.json())
             .then(data => 
                 this.setState(p => ({
-                    items: p.items.concat(data.results || []),
+                    items: p.items.concat(data.results),
                     page: next,
                     cargando: false
             })))
@@ -77,7 +77,9 @@ class ListScreen extends Component {
         {error && <p className="error">Error: {error}</p>}
 
         <div className="grid">
-          {filtered.map(it => <Card key={`${type}-${it.id}`} item={it} type={type} />)}
+            {filtered.map(it => 
+                <Card key={`${type}-${it.id}`} item={it} type={type} />
+            )}
         </div>
 
         <div style={{ marginTop: 16 }}>

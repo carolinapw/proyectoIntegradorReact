@@ -4,11 +4,14 @@ import MoviesPopular from "./screens/Sections/MoviesPopular";
 import MoviesNowPlaying from "./screens/Sections/MoviesNowPlaying";
 import SeriesPopular from "./screens/Sections/SeriesPopular";
 import SeriesAiringToday from "./screens/Sections/SeriesAiringToday";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 import "./global.css"
 
 function App() {
   return (
     <div className="App">
+      <Header />
       <Switch>
           <Route path='/' exact={true} component={Home}/>
           <Route path="/movies/popular" component={MoviesPopular} />
@@ -18,6 +21,7 @@ function App() {
           {/* <Route path="/movie/:id" component={Detail} />
           <Route path="/tv/:id" component={Detail} /> */}
       </Switch>
+      <Footer />
     </div>
   );
 }

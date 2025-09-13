@@ -1,0 +1,41 @@
+.app-header {
+/* para mantener el header si se scrollea */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+
+  padding: 12px 16px;
+  background: #0f172a;          
+  color: #ffffff;
+  border-bottom: 1px solid #0b1222;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.05);
+}
+
+/* Marca / logo */
+.app-header .brand a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 1.1rem;
+  letter-spacing: .2px;
+}
+
+.app-header .nav {
+  margin-left: auto;             /* empuja el menú a la derecha */
+}
+
+
+@media (max-width: 720px) {
+  .app-header {
+    padding: 10px 12px;
+  }
+  .app-header .nav {
+    width: 100%;
+    margin-left: 0;
+  }
+}
