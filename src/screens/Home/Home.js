@@ -57,25 +57,25 @@ class Home extends Component {
                 title="Películas más populares"
                 items={this.state.peliculasPopulares} // array de resultados que devuelve TMDB en cada fetch
                 type="movie"
-                seeAllTo="/movies?section=popular"
+                seeAllTo="/movies/popular"
             />
             <CardList
                 title="Películas en cartelera"
                 items={this.state.peliculasCartelera}
                 type="movie"
-                seeAllTo="/movies?section=now_playing"
+                seeAllTo="/movies/now-playing"
             />
             <CardList
                 title="Series populares"
                 items={this.state.seriesPopulares}
                 type="tv"
-                seeAllTo="/series?section=popular"
+                seeAllTo="/series/popular"
             />
             <CardList
                 title="Series al aire hoy"
                 items={this.state.seriesHoy}
                 type="tv"
-                seeAllTo="/series?section=airing_today"
+                seeAllTo="/series/airing-today"
             />
             <Footer />
             </>
