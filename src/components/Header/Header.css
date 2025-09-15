@@ -28,14 +28,82 @@
 .app-header .nav {
   margin-left: auto;             /* empuja el menú a la derecha */
 }
+* Botones de Movie/Serie */
+.search-container label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;  /* deja espacio entre todos los hijos */
+}
+/* Botón Buscar */
+.search-container button {
+   padding: 6px 12px;   /* menos ancho */
+  font-size: 0.9rem;   /* texto más chico */
+  border-radius: 16px;
+  border: none;
+  margin-left: 10px;
+  background-color: #ffffff;
+  color: rgb(13, 5, 34);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.search-container button:hover {
+  background-color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
 
 
 @media (max-width: 720px) {
   .app-header {
+    flex-direction: column;  
+    align-items: flex-start;
     padding: 10px 12px;
-  }
+  }}
+
   .app-header .nav {
     width: 100%;
     margin-left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .search-container {
+    width: 100%;       
+    justify-content: flex-start;
+  }
+
+  .search-container input[type="text"] {
+    flex: 1;
+    width: 100%;       
+
+  .search-container button {
+    flex-shrink: 0;    
+}}
+
+
+@media (max-width: 480px) {
+  .app-header .brand a {
+    font-size: 1rem; 
+  }
+
+  .search-container {
+    flex-direction: column; 
+    align-items: stretch;
+    gap: 6px;
+  }
+
+  .search-container button {
+    width: 100%; 
   }
 }

@@ -16,7 +16,7 @@ class Header extends Component {
         { ruta: "/series/airing-today", seccion: 'Series hoy' }
       ], 
       query: "",
-      type: "", 
+      type: "movie", 
       seccion: "popular",
       peliculasPopulares: [],
       peliculasCartelera:[],
@@ -48,7 +48,7 @@ class Header extends Component {
           <Navbar nav={this.state.itemsHeader} />
         </nav>
       
-        <form onSubmit={(event) => this.handleSubmit(event)} className="search-form">
+        <form className="search-container" onSubmit={(event) => this.handleSubmit(event)} >
           <input
             type="text"
             placeholder={`Buscar ${this.state.type=== "movie" ? "peliculas" : "series"  }`}
@@ -63,11 +63,11 @@ class Header extends Component {
           />
             <input onChange={(e) => {
                this.setState({ type: e.target.value });
-            }} type="radio" name="media" value="movie"/>
+            }} type="radio" name="media" value="movie" checked={this.state.type ==="movie" ? true : false}/>
             <label for="media">Movie</label>
             <input onChange={(e) => {
                this.setState({ type: e.target.value });
-            }} type="radio" name="media" value="tv"/>
+            }} type="radio" name="media" value="tv" checked={this.state.type ==="tv" ? true : false}/>
             <label for="media">Serie</label>
           <button type="submit">Buscar</button>
         </form>
