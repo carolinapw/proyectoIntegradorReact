@@ -51,7 +51,7 @@ class Header extends Component {
         <form onSubmit={(event) => this.handleSubmit(event)} className="search-form">
           <input
             type="text"
-            placeholder={`Buscar ${this.state.type=== "movie" ? "peliculas" : this.state.type==="tv" ? "series" }`}
+            placeholder={`Buscar ${this.state.type=== "movie" ? "peliculas" : "series"  }`}
             value={this.state.query}
             onChange={(e) => {
               console.log(e.target);
