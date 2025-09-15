@@ -35,7 +35,7 @@ class ListScreen extends Component {
     handleLoadMore() {
         let { type, section } = this.props; // "movie" o "tv" y la sección}
         let next = this.state.page + 1;
-        let url = `${base}/${type}/${section}?api_key=${apiKey}&language=en-US&page=${this.state.page}`
+        let url = `${base}/${type}/${section}?api_key=${apiKey}&language=en-US&page=${next}`
 
         fetch(url)
             .then(r => r.json())
@@ -82,7 +82,7 @@ class ListScreen extends Component {
             )}
         </div>
 
-        <div style={{ marginTop: 16 }}>
+        <div>
           <button className="btn" onClick={() => this.handleLoadMore()} disabled={cargando}>
             {cargando ? "Cargando..." : "Cargar más"}
           </button>
