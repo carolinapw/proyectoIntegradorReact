@@ -39,22 +39,16 @@ class Header extends Component {
 }
   handleSubmit(e){
     e.preventDefault();
+    console.log(e);
+    
     if(this.state.query!==""){
       this.props.history.push(`/search/${this.state.type}/${this.state.query}`);
     }
   }
-  filtrarPeliculas(textoAFiltrar){
-    let lista = this.state.seccion==="popular" ? this.state.peliculasPopulares : this.state.seccion==="now-playing" ? this.state.peliculasCartelera : [];
-    let peliculasFiltradas = lista.filter(pelicula => pelicula.title.toLowerCase().includes(textoAFiltrar.toLowerCase))
-    this.setState({peliculasFiltradas});
-  }
-  filtrarSeries(textoAFiltrar){
-    let listaSeries = this.state.seccion==="popular" ? this.state.seriesPopulares : this.state.seccion==="airing-today" ? this.state.seriesHoy : [];
-    let seriesFiltradas = listaSeries.filter(serie => serie.name.toLowerCase().includes(textoAFiltrar.toLowerCase))
-    this.setState({seriesFiltradas});
-  }
   
   render() {
+    console.log();
+    
     return (
       <header className="app-header">
         <div className="brand">
@@ -71,16 +65,14 @@ class Header extends Component {
             placeholder={`Buscar ${this.state.type=== "movie" ? "peliculas" : this.state.type==="tv" ? "series" : "series y peliculas" }`}
             value={this.state.query}
             onChange={(e) => {
+              console.log(e.target);
+              
               this.setState({ query: e.target.value });
-
-              if (this.state.type === "movie") {
-                 this.filtrarPeliculas(e.target.value);
-              } else if (this.state.type === "tv") {
-                this.filtrarSeries(e.target.value);}
                
               }}
              
           />
+
           <button type="submit">Buscar</button>
         </form>
       </header>
