@@ -33,7 +33,7 @@ class Header extends Component {
     } else if (path.includes("/movies")) {
       this.setState({ type: "movie" });
     } else {
-      this.setState({ type: "" }); 
+      this.setState({ type: "all"}); 
     }
   }
   
@@ -78,7 +78,9 @@ class Header extends Component {
                  this.filtrarPeliculas(e.target.value);
               } else if (this.state.type === "tv") {
                 this.filtrarSeries(e.target.value);}
+               
               }}
+             
           />
           <button type="submit">Buscar</button>
         </form>

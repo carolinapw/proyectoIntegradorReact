@@ -22,7 +22,7 @@ function App() {
           <Route path="/series/airing-today" component={SeriesAiringToday} />
           <Route path="/movie/:id" component={Detalle} />
           <Route path="/series/:id" component={Detalle} /> 
-          <Route path="/search/:type/:query" component={SearchResults}/>
+          <Route path="/search/:type?/:query" component={SearchResults}/>
       </Switch>
       <Footer />
     </div>

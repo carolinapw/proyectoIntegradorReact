@@ -18,7 +18,28 @@ class SearchResults extends Component{
  componentDidMount() {
     let type = this.props.match.params.type
     let query = this.props.match.params.query
-    let url = `${base}/search/${type}?api_key=${apiKey}&language=en&query=${encodeURIComponent(query)}`
+
+  //como en la home se buscan series y peliculas tenemos que hacer un doble fetch
+    if(type==="all"){
+      fetch(`${base}/search/movie?api_key=${apiKey}&language=en&query=${query}`)
+      .then(r => r.json())
+      .then(moviesData => {
+        fetch(`${base}/search/tv?api_key=${apiKey}&language=en&query=${query}`)
+          .then(r => r.json())
+          .then(tvData => {
+            this.setState({
+              data: moviesData.results.concat(tvData.results),
+              cargando: false,
+              type: "all",
+              query: query
+            });
+          })
+          .catch(e => this.setState({ error: e.message, cargando: false }));
+      })
+      .catch(e => this.setState({ error: e.message, cargando: false }));
+    }
+    else{
+      let url = `${base}/search/${type}?api_key=${apiKey}&language=en&query=${query}`
     
         fetch(url)
             .then(r => r.json())
@@ -32,6 +53,7 @@ class SearchResults extends Component{
             .catch(e => this.setState({ error: e.message, cargando: false }));
    
             }
+    }
           
   render() {
     if (this.state.cargando) {
