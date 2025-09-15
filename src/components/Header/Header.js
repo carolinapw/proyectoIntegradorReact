@@ -1,35 +1,54 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { Component } from "react";
+import { Link, withRouter } from "react-router-dom";
 import "./Header.css";
 import Navbar from "../NavBar/NavBar";
 
-function Header() {
-    let itemsHeader = [
-        {
-        ruta: "/",
-        seccion: 'Home'
-        },
-        {
-        ruta: "/favorites", // Falta hacer 
-        seccion: 'Favoritos' 
-        },
-        {
-        ruta: "/movies/popular",
-        seccion: 'Pelis populares'
-        },
-        {
-        ruta: "/movies/now-playing",
-        seccion: 'Pelis en cartelera'
-        },
-        {
-        ruta: "/series/popular",
-        seccion: 'Series populares'
-        },
-        {
-        ruta: "/series/airing-today",
-        seccion: 'Series hoy'
-        }
-    ]
+class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { 
+      itemsHeader: [
+        { ruta: "/", seccion: 'Home' },
+        { ruta: "/favorites", seccion: 'Favoritos' },
+        { ruta: "/movies/popular", seccion: 'Pelis populares' },
+        { ruta: "/movies/now-playing", seccion: 'Pelis en cartelera' },
+        { ruta: "/series/popular", seccion: 'Series populares' },
+        { ruta: "/series/airing-today", seccion: 'Series hoy' }
+      ], 
+      query: "",
+      type: "", 
+      seccion: "popular",
+      peliculasPopulares: [],
+      peliculasCartelera:[]
+    };
+    
+  }
+  componentDidUpdate(prevProps) {
+  if (this.props.location.pathname !== prevProps.location.pathname) {
+    let path = this.props.location.pathname;
+    if (path.includes("/series")) {
+      this.setState({ type: "series" });
+    } else if (path.includes("/movies")) {
+      this.setState({ type: "movie" });
+    } else {
+      this.setState({ type: "" }); 
+    }
+  }
+  
+}
+  handleSubmit(e){
+    e.preventDefault();
+    if(this.state.query!==""){
+      this.props.history.push(`/search/${this.state.type}/${this.state.query}`);
+    }
+  }
+  filtrarPeliculas(textoAFiltrar){
+    let lista = this.state.seccion==="popular" ? this.state.peliculasPopulares : this.state.seccion==="now-playing" ? this.state.peliculasCartelera: [];
+    let peliculasFiltradas = lista.filter(pelicula => pelicula.title.toLowerCase().includes(textoAFiltrar.toLowerCase))
+    this.setState({peliculasFiltradas});
+  }
+  
+  render() {
     return (
       <header className="app-header">
         <div className="brand">
@@ -37,13 +56,21 @@ function Header() {
         </div>
 
         <nav className="nav">
-            <Navbar nav={itemsHeader} />
+          <Navbar nav={this.state.itemsHeader} />
         </nav>
-
-         {/* <Formulario /> Faltan hacer los resultados de busqueda */}
+      
+        <form onSubmit={(event) => this.handleSubmit(event)} className="search-form">
+          <input
+            type="text"
+            placeholder={`Buscar ${this.state.type=== "movie" ? "peliculas" : this.state.type==="series" ? "series" : "series y peliculas" }`}
+            value={this.state.query}
+            onChange={(e) => this.setState({ query: e.target.value })}
+          />
+          <button type="submit">Buscar</button>
+        </form>
       </header>
     );
+  }
 }
 
-export default Header
-    
+export default withRouter(Header);

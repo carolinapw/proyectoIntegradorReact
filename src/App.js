@@ -7,6 +7,8 @@ import SeriesAiringToday from "./screens/Sections/SeriesAiringToday";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import "./global.css"
+import Detalle from './screens/Detalle/Detalle.js';
+import SearchResults from './screens/SearchResults/searchResults.js';
 
 function App() {
   return (
@@ -18,8 +20,9 @@ function App() {
           <Route path="/movies/now-playing" component={MoviesNowPlaying} />
           <Route path="/series/popular" component={SeriesPopular} />
           <Route path="/series/airing-today" component={SeriesAiringToday} />
-          {/* <Route path="/movie/:id" component={Detail} />
-          <Route path="/tv/:id" component={Detail} /> */}
+          <Route path="/movie/:id" component={Detalle} />
+          <Route path="/tv/:id" component={Detalle} /> 
+          <Route path="/search/:type/:query" component={SearchResults}/>
       </Switch>
       <Footer />
     </div>
