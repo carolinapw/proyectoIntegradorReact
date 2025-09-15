@@ -27,10 +27,9 @@ class Header extends Component {
   }
   componentDidUpdate(prevProps) {
   if (this.props.location.pathname !== prevProps.location.pathname) {
-    let path = this.props.location.pathname;
-    if (path.includes("/series")) {
+    if (this.props.location.pathname.includes("/series")) {
       this.setState({ type: "tv" });
-    } else if (path.includes("/movies")) {
+    } else if (this.props.location.pathname.includes("/movies")) {
       this.setState({ type: "movie" });
     } else {
       this.setState({ type: "all"}); 
