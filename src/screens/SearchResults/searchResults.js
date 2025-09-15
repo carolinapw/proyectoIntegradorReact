@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
 const apiKey = "d7dce97c9f45ff25eeb66dc3784d0bca"
-const base = "https://api.themoviedb.org/3"
 
 class SearchResults extends Component{
      constructor(props) {
@@ -18,43 +17,54 @@ class SearchResults extends Component{
  componentDidMount() {
     let type = this.props.match.params.type
     let query = this.props.match.params.query
+  
+      if (type === "movie") {
 
-  //como en la home se buscan series y peliculas tenemos que hacer un doble fetch
-    if(type==="all"){
-      fetch(`${base}/search/movie?api_key=${apiKey}&language=en&query=${query}`)
-      .then(r => r.json())
-      .then(moviesData => {
-        fetch(`${base}/search/tv?api_key=${apiKey}&language=en&query=${query}`)
-          .then(r => r.json())
-          .then(tvData => {
-            this.setState({
-              data: moviesData.results.concat(tvData.results),
-              cargando: false,
-              type: "all",
-              query: query
-            });
-          })
-          .catch(e => this.setState({ error: e.message, cargando: false }));
+     fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}&include_adult=false&language=en-US&page=1`)
+        .then(res => res.json())
+      .then(res => {
+        if (res.results && res.results.length > 0) {
+          this.setState({
+            data: res.results,
+            type: type,
+            query: query,
+            cargando: false
+          });
+        } else {
+          this.setState({
+            data: null, 
+            type: type,
+            query: query,
+            cargando: false
+          });
+        }
       })
-      .catch(e => this.setState({ error: e.message, cargando: false }));
-    }
-    else{
-      let url = `${base}/search/${type}?api_key=${apiKey}&language=en&query=${query}`
-    
-        fetch(url)
-            .then(r => r.json())
-            .then(data => 
-                this.setState({
-                    query:query,
-                    type: type,
-                    data:data.results, 
-                    cargando:false
-                }))
-            .catch(e => this.setState({ error: e.message, cargando: false }));
-   
+        .catch(err => console.error(err));
+            }else {
+                    fetch(`https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&query=${query}&include_adult=false&language=en-US&page=1`)
+        .then(res => res.json())
+        .then(res => {
+        if (res.results && res.results.length > 0) {
+          this.setState({
+            data: res.results,
+            type: type,
+            query: query,
+            cargando: false
+          });
+        } else {
+          this.setState({
+            data: null, 
+            type: type,
+            query: query,
+            cargando: false
+          });
+        }
+      })
+        .catch(err => console.error(err));
             }
+
     }
-          
+     
   render() {
     if (this.state.cargando) {
       return <p>Cargando resultados....</p>;

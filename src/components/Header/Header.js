@@ -25,18 +25,7 @@ class Header extends Component {
     };
     
   }
-  componentDidUpdate(prevProps) {
-  if (this.props.location.pathname !== prevProps.location.pathname) {
-    if (this.props.location.pathname.includes("/series")) {
-      this.setState({ type: "tv" });
-    } else if (this.props.location.pathname.includes("/movies")) {
-      this.setState({ type: "movie" });
-    } else {
-      this.setState({ type: "all"}); 
-    }
-  }
-  
-}
+
   handleSubmit(e){
     e.preventDefault();
     console.log(e);
@@ -62,7 +51,7 @@ class Header extends Component {
         <form onSubmit={(event) => this.handleSubmit(event)} className="search-form">
           <input
             type="text"
-            placeholder={`Buscar ${this.state.type=== "movie" ? "peliculas" : this.state.type==="tv" ? "series" : "series y peliculas" }`}
+            placeholder={`Buscar ${this.state.type=== "movie" ? "peliculas" : this.state.type==="tv" ? "series" }`}
             value={this.state.query}
             onChange={(e) => {
               console.log(e.target);
@@ -72,7 +61,14 @@ class Header extends Component {
               }}
              
           />
-
+            <input onChange={(e) => {
+               this.setState({ type: e.target.value });
+            }} type="radio" name="media" value="movie"/>
+            <label for="media">Movie</label>
+            <input onChange={(e) => {
+               this.setState({ type: e.target.value });
+            }} type="radio" name="media" value="tv"/>
+            <label for="media">Serie</label>
           <button type="submit">Buscar</button>
         </form>
       </header>
