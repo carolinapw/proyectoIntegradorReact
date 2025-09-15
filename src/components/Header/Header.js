@@ -19,7 +19,9 @@ class Header extends Component {
       type: "", 
       seccion: "popular",
       peliculasPopulares: [],
-      peliculasCartelera:[]
+      peliculasCartelera:[],
+      seriesPopulares: [],
+      seriesHoy: []
     };
     
   }
@@ -27,7 +29,7 @@ class Header extends Component {
   if (this.props.location.pathname !== prevProps.location.pathname) {
     let path = this.props.location.pathname;
     if (path.includes("/series")) {
-      this.setState({ type: "series" });
+      this.setState({ type: "tv" });
     } else if (path.includes("/movies")) {
       this.setState({ type: "movie" });
     } else {
@@ -43,9 +45,14 @@ class Header extends Component {
     }
   }
   filtrarPeliculas(textoAFiltrar){
-    let lista = this.state.seccion==="popular" ? this.state.peliculasPopulares : this.state.seccion==="now-playing" ? this.state.peliculasCartelera: [];
+    let lista = this.state.seccion==="popular" ? this.state.peliculasPopulares : this.state.seccion==="now-playing" ? this.state.peliculasCartelera : [];
     let peliculasFiltradas = lista.filter(pelicula => pelicula.title.toLowerCase().includes(textoAFiltrar.toLowerCase))
     this.setState({peliculasFiltradas});
+  }
+  filtrarSeries(textoAFiltrar){
+    let listaSeries = this.state.seccion==="popular" ? this.state.seriesPopulares : this.state.seccion==="airing-today" ? this.state.seriesHoy : [];
+    let seriesFiltradas = listaSeries.filter(serie => serie.name.toLowerCase().includes(textoAFiltrar.toLowerCase))
+    this.setState({seriesFiltradas});
   }
   
   render() {
@@ -62,9 +69,16 @@ class Header extends Component {
         <form onSubmit={(event) => this.handleSubmit(event)} className="search-form">
           <input
             type="text"
-            placeholder={`Buscar ${this.state.type=== "movie" ? "peliculas" : this.state.type==="series" ? "series" : "series y peliculas" }`}
+            placeholder={`Buscar ${this.state.type=== "movie" ? "peliculas" : this.state.type==="tv" ? "series" : "series y peliculas" }`}
             value={this.state.query}
-            onChange={(e) => this.setState({ query: e.target.value })}
+            onChange={(e) => {
+              this.setState({ query: e.target.value });
+
+              if (this.state.type === "movie") {
+                 this.filtrarPeliculas(e.target.value);
+              } else if (this.state.type === "tv") {
+                this.filtrarSeries(e.target.value);}
+              }}
           />
           <button type="submit">Buscar</button>
         </form>
