@@ -9,6 +9,7 @@ import Footer from "./components/Footer/Footer";
 import "./global.css"
 import Detalle from './screens/Detalle/Detalle.js';
 import SearchResults from './screens/SearchResults/searchResults.js';
+import NotFound from "./screens/Notfound/NotFound.js";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/movie/:id" component={Detalle} />
           <Route path="/series/:id" component={Detalle} /> 
           <Route path="/search/:type?/:query" component={SearchResults}/>
+          <Route component={NotFound} />
       </Switch>
       <Footer />
     </div>
