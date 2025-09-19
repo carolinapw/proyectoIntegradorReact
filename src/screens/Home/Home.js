@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import CardList from '../../components/CardList/CardList.js'
-// import Loader from "../../components/Loader"
-// import Header
 
 class Home extends Component {
     constructor (props){

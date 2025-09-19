@@ -1,4 +1,3 @@
-// Screen base para reutilizar
 import React, { Component } from "react";
 import Card from "../../components/Card/Card";
 import "../../components/CardList/CardList.css";
@@ -33,7 +32,7 @@ class ListScreen extends Component {
     }
 
     handleLoadMore() {
-        let { type, section } = this.props; // "movie" o "tv" y la sección}
+        let { type, section } = this.props; // "movie" o "tv" y la sección
         let next = this.state.page + 1;
         let url = `${base}/${type}/${section}?api_key=${apiKey}&language=en-US&page=${next}`
 

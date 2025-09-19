@@ -47,11 +47,11 @@ class Card extends Component {
 
     render() {
         const { item, type } = this.props;
-        //let id = item.id;
-        let titulo  = item.title || item.name || "Sin título";
-        let poster = item.poster_path ? img + item.poster_path : "";
-        let descripcion = item.overview || "Sin descripción disponible.";
-        let to = type === "movie" ? `/movie/${item.id}` : `/tv/${item.id}`;
+        //let id = item.id
+        let titulo  = item.title || item.name || "Sin título"
+        let poster = item.poster_path ? img + item.poster_path : ""
+        let descripcion = item.overview || "Sin descripción disponible."
+        let to = type === "movie" ? `/movie/${item.id}` : `/tv/${item.id}`
 
         const { verMas, textoBoton } = this.state;
 
@@ -68,17 +68,14 @@ class Card extends Component {
                         <Link to={to}>{titulo}</Link>
                     </h4>
 
-                    {/* botón ver/ocultar descripción */}
                     <p className="more" onClick={this.botonVerMas}>{textoBoton}</p>
 
-                    {/* descripción: arranca oculta */}
                     {verMas && (
                         <section className="extra">
                             <p>{descripcion}</p>
                         </section>
                     )}
 
-                    {/* Ir a detalle */}
                     <div className="card-actions">
                         <Link className="btn" to={to}>Ir a detalle</Link>
                            <button className="btn" onClick={() => this.toggleFavorito()}> 
