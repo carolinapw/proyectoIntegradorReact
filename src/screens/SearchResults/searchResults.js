@@ -9,7 +9,7 @@ class SearchResults extends Component{
       query: "", 
       type: "",
       data:null, 
-      cargando:true,
+      cargando:false,
       error: null, 
     };
   }

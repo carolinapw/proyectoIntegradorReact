@@ -6,12 +6,12 @@ import CardList from '../../components/CardList/CardList.js'
 class Home extends Component {
     constructor (props){
         super(props)
-        this.state ={ // Guarda los rdos del fetch en el estado
+        this.state ={ 
             peliculasPopulares: [],
             peliculasCartelera: [],
             seriesPopulares: [], 
             seriesHoy: [], 
-            cargando: true,
+            cargando: false,
             error: null,
         }
     }
@@ -47,14 +47,15 @@ class Home extends Component {
     }
 
     render() {
-        //if (this.state.cargando) return <Loader />; // o un <p>Cargando…</p>
+        
         if (this.state.error) return <p className="error">Error: {this.state.error}</p>;
+           if (this.state.cargando) { return <p>Cargando resultados....</p>;}
 
         return (
             <>
             <CardList
                 title="Películas más populares"
-                items={this.state.peliculasPopulares.slice(0, 5)} // array de resultados que devuelve TMDB en cada fetch
+                items={this.state.peliculasPopulares.slice(0, 5)} 
                 type="movie"
                 seeAllTo="/movies/popular"
             />

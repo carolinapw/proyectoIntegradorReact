@@ -13,7 +13,7 @@ class ListScreen extends Component {
             items: [], 
             page: 1, 
             filter: "", 
-            cargando: true, 
+            cargando: false, 
             error: null };
     }
 
@@ -54,6 +54,9 @@ class ListScreen extends Component {
     }
 
     render() {
+
+        if (this.state.cargando) {
+      return <p>Cargando resultados....</p>;}
         const { type, title } = this.props
         const { items, filter, cargando, error } = this.state
 

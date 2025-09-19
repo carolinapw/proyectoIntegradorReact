@@ -7,9 +7,37 @@ const img = "https://image.tmdb.org/t/p/w342"
 class Card extends Component {
     constructor(props) {
         super(props);
-        this.state = { verMas: false, textoBoton: "Ver descripción" }
+        this.state = { verMas: false, textoBoton: "Ver descripción", esFavorito: false }
     }
-    
+    componentDidMount(){
+        let key = this.props.type === "movie" ? "favoritosM" : "favoritosS";
+        let favoritos = localStorage.getItem(key) ? JSON.parse(localStorage.getItem(key)) : [];
+        let coincidencias = favoritos.filter(fav => fav.id === this.props.item.id);
+        if (coincidencias.length > 0 ) {
+             this.setState({esFavorito: true})
+        } else{
+             this.setState({esFavorito: false})
+        }
+       
+    }
+    toggleFavorito(){
+    const { item, type } = this.props;
+    let key = type === "movie" ? "favoritosM" : "favoritosS";
+
+    let recupero = localStorage.getItem(key);
+    let favoritos = recupero ? JSON.parse(recupero) : [];
+
+    if (this.state.esFavorito) {
+     
+      favoritos = favoritos.filter((f) => f.id !== item.id);
+    } else {
+      
+      favoritos.push(item);
+    }
+
+    localStorage.setItem(key, JSON.stringify(favoritos));
+    this.setState({ esFavorito: !this.state.esFavorito});
+};
     botonVerMas = () => {
         this.setState((p) => ({
             verMas: !p.verMas,
@@ -53,11 +81,14 @@ class Card extends Component {
                     {/* Ir a detalle */}
                     <div className="card-actions">
                         <Link className="btn" to={to}>Ir a detalle</Link>
+                           <button className="btn" onClick={() => this.toggleFavorito()}> 
+                            {this.state.esFavorito ? "Eliminar de favoritos" : "Agregar a favoritos"}</button>
                     </div>
                 </div>
+                
             </article>
         )
     }
 }
 
-export default Card
+export default Card;

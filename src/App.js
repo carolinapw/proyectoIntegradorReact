@@ -10,11 +10,12 @@ import "./global.css"
 import Detalle from './screens/Detalle/Detalle.js';
 import SearchResults from './screens/SearchResults/searchResults.js';
 import NotFound from "./screens/Notfound/NotFound.js";
+import Favoritos from './screens/Favortitos/Favoritos.js';
+
 
 function App() {
   return (
-    <div className="App">
-      <Header />
+    <div className="App">      <Header />
       <Switch>
           <Route path='/' exact={true} component={Home}/>
           <Route path="/movies/popular" component={MoviesPopular} />
@@ -24,6 +25,7 @@ function App() {
           <Route path="/movie/:id" component={Detalle} />
           <Route path="/series/:id" component={Detalle} /> 
           <Route path="/search/:type?/:query" component={SearchResults}/>
+          <Route path= "/favorites" component={Favoritos}/>
           <Route component={NotFound} />
       </Switch>
       <Footer />
