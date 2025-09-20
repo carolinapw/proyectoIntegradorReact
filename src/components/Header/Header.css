@@ -1,4 +1,4 @@
-:root { --brand: rgb(120,148,33); }
+:root { --brand: rgb(120,148,33); } /* no vimos :root ni --brand*/
 
 .app-header{
   position: sticky; 
@@ -10,7 +10,7 @@
   padding: 10px 16px;
   background: var(--brand); 
   color: #fff;
-}
+}  /* no vimos z-index, top*/
 
 .app-header .brand a{ color:#fff; text-decoration:none; font-weight:800; font-size:1.1rem; }
 
@@ -34,8 +34,8 @@
   border: 1px solid rgba(0,0,0,.2);
   border-radius: 30px; outline: none; background:#fff; color:#111;
 }
-.search-container input[type="text"]::placeholder{ color:#8a8f98; }
-.search-container input[type="radio"]{ accent-color: var(--brand); }
+.search-container input[type="text"]::placeholder{ color:#8a8f98; } /* no vimos para nombrarlo input[type="text"]::placeholder*/
+.search-container input[type="radio"]{ accent-color: var(--brand); } /* no vimos accent-color*/
 .search-container label{ color:#fff; display:inline-flex; align-items:center; gap:6px; }
 .search-container button{
   padding: 8px 12px; 
