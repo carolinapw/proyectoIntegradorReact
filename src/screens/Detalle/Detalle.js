@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import "../../components/CardList/CardList.css";
+//import "../../components/CardList/CardList.css";
+import "./Detalle.css";
 
 const apiKey = "d7dce97c9f45ff25eeb66dc3784d0bca"
 const base = "https://api.themoviedb.org/3"
@@ -34,7 +35,7 @@ class Detalle extends Component {
   render() {
    
     if (!this.state.data) {
-      return <p>Cargando detalle....</p>;
+      return <p className="detail-loading">Cargando detalle....</p>;
     }
 
     const titulo = this.state.type === "movie" ? this.state.data.title : this.state.data.name;
@@ -48,7 +49,7 @@ class Detalle extends Component {
  
     return (
       <React.Fragment>
-        <h1>Detalle de {this.state.type==="movie" ? "Pelicula" : "Serie"}</h1>
+        <h1 className='detail'>Detalle de {this.state.type==="movie" ? "Pelicula" : "Serie"}</h1>
         <section className="card-container">
          <article className="card">
             <img src={poster} alt={titulo} /> 

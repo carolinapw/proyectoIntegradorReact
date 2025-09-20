@@ -1,0 +1,68 @@
+/* ---------- Detalle (scopeado al contenedor) ---------- */
+:root { --brand: rgb(120,148,33); }
+
+.card-container{ padding:10px; }
+
+/* Sólo afecta a .card dentro del detalle */
+.card-container .card{
+  display:grid;
+  grid-template-columns:260px 1fr;
+  gap:20px;
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:14px;
+  box-shadow:0 8px 16px rgba(0,0,0,.08);
+  overflow:hidden;
+}
+
+/* Poster (solo dentro del detalle) */
+.card-container .card > img{
+  width:100%;
+  height:auto;
+  display:block;
+  object-fit:cover;
+}
+
+.card-container .card-body{
+  padding:16px;
+  display:grid;
+  gap:10px;
+  padding-top: 30px;
+}
+
+.detail {
+    margin: 24px 10px;
+    font-size: 27px;
+    margin-bottom: 12px;
+}
+
+.card-container h1{
+  margin:0 0 12px;
+  font-size:clamp(1.25rem,2.5vw,1.8rem);
+}
+.card-container .card-body h2{
+  margin:0;
+  font-size:23px;
+}
+
+/* Filas de info */
+.card-container .card-body p{
+  margin:0;
+  line-height:1.5;
+  color:#334155;
+}
+
+/* Etiquetas con color de marca */
+.card-container .card-body strong{
+  color:var(--brand);
+  font-weight:700;
+}
+
+/* Responsive */
+@media (max-width:720px){
+  .card-container .card{ grid-template-columns:1fr; }
+  .card-container .card > img{
+    max-width:320px; justify-self:center;
+  }
+  .card-container .card-body{ padding:14px; }
+}

@@ -41,7 +41,7 @@ class Header extends Component {
     return (
       <header className="app-header">
         <div className="brand">
-          <Link to="/">UdeSA Movies</Link>
+          <Link to="/">Show Time</Link>
         </div>
 
         <nav className="nav">

@@ -1,7 +1,6 @@
 .main-nav {
   display: flex;
   align-items: center;
-  gap: 8px;
 
   list-style: none;
   padding: 0;
@@ -29,7 +28,6 @@
   border-color: rgba(255,255,255,.12);
 }
 
-/* que el menú haga scroll horizontal si no entra */
 @media (max-width: 720px) {
   .main-nav {
     overflow-x: auto;
