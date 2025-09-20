@@ -17,8 +17,7 @@ class ListScreen extends Component {
     }
 
     componentDidMount() { 
-        let { type, section } = this.props; // "movie" o "tv" y la sección
-        let url = `${base}/${type}/${section}?api_key=${apiKey}&language=en-US&page=${this.state.page}`
+        let url = `${base}/${this.props.type}/${this.props.section}?api_key=${apiKey}&language=en-US&page=${this.state.page}`
     
         fetch(url)
             .then(r => r.json())
@@ -32,9 +31,8 @@ class ListScreen extends Component {
     }
 
     handleLoadMore() {
-        let { type, section } = this.props; // "movie" o "tv" y la sección
         let next = this.state.page + 1;
-        let url = `${base}/${type}/${section}?api_key=${apiKey}&language=en-US&page=${next}`
+        let url = `${base}/${this.props.type}/${this.props.section}?api_key=${apiKey}&language=en-US&page=${next}`
 
         fetch(url)
             .then(r => r.json())
@@ -56,37 +54,36 @@ class ListScreen extends Component {
 
         if (this.state.cargando) {
       return <p>Cargando resultados....</p>;}
-        const { type, title } = this.props
-        const { items, filter, cargando, error } = this.state
 
-        let filtered = items.filter(it => {
-            const t = (type === "movie" ? it.title : it.name) || "";
-            return t.toLowerCase().includes(filter.toLowerCase());
+        let filtered = this.state.items.filter(it => {
+         const t = this.props.type === "movie" ? (it.title ? it.title : "") : (it.name ? it.name : "");
+
+            return t.toLowerCase().includes(this.state.filter.toLowerCase());
         });
 
         return (
             <div className="group">
                 <header className="group-header">
-                    <h3>{title}</h3>
+                    <h3>{this.props.title}</h3>
                     <input
                         type="text"
                         placeholder="Filtrar…"
-                        value={filter}
+                        value={this.state.filter}
                         onChange={(event)=>this.handleFilter(event)}
                     />
                 </header>
 
-        {error && <p className="error">Error: {error}</p>}
+        {this.state.error && <p className="error">Error: {this.state.error}</p>}
 
         <div className="grid">
             {filtered.map(it => 
-                <Card key={`${type}-${it.id}`} item={it} type={type} />
+                <Card key={`${this.props.type}-${it.id}`} item={it} type={this.props.type} />
             )}
         </div>
 
         <div>
-          <button className="btn" onClick={() => this.handleLoadMore()} disabled={cargando}>
-            {cargando ? "Cargando..." : "Cargar más"}
+          <button className="btn" onClick={() => this.handleLoadMore()} disabled={this.state.cargando}>
+            {this.state.cargando ? "Cargando..." : "Cargar más"}
           </button>
         </div>
       </div>

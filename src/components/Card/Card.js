@@ -21,18 +21,17 @@ class Card extends Component {
        
     }
     toggleFavorito(){
-    const { item, type } = this.props;
-    let key = type === "movie" ? "favoritosM" : "favoritosS";
+    let key = this.props.type === "movie" ? "favoritosM" : "favoritosS";
 
     let recupero = localStorage.getItem(key);
     let favoritos = recupero ? JSON.parse(recupero) : [];
 
     if (this.state.esFavorito) {
      
-      favoritos = favoritos.filter((f) => f.id !== item.id);
+      favoritos = favoritos.filter((f) => f.id !== this.props.item.id);
     } else {
       
-      favoritos.push(item);
+      favoritos.push(this.props.item);
     }
 
     localStorage.setItem(key, JSON.stringify(favoritos));
@@ -46,14 +45,10 @@ class Card extends Component {
     };
 
     render() {
-        const { item, type } = this.props;
-        //let id = item.id
-        let titulo  = item.title || item.name || "Sin título"
-        let poster = item.poster_path ? img + item.poster_path : ""
-        let descripcion = item.overview || "Sin descripción disponible."
-        let to = type === "movie" ? `/movie/${item.id}` : `/tv/${item.id}`
-
-        const { verMas, textoBoton } = this.state;
+        let titulo = this.props.item.title ? this.props.item.title : this.props.item.name ? this.props.item.name : "Sin título";
+        let poster = this.props.item.poster_path ? img + this.props.item.poster_path : ""
+        let descripcion = this.props.item.overview ? this.props.item.overview : "Sin descripción disponible.";
+        let to = this.props.type === "movie" ? `/movie/${this.props.item.id}` : `/series/${this.props.item.id}`
 
         return (
             <article className="card">
@@ -68,9 +63,9 @@ class Card extends Component {
                         <Link to={to}>{titulo}</Link>
                     </h4>
 
-                    <p className="more" onClick={this.botonVerMas}>{textoBoton}</p>
+                    <p className="more" onClick={this.botonVerMas}>{this.state.textoBoton}</p>
 
-                    {verMas && (
+                    {this.state.verMas && (
                         <section className="extra">
                             <p>{descripcion}</p>
                         </section>
