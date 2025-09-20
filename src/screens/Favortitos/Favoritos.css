@@ -1,0 +1,106 @@
+/* ====== BASE ====== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #222;
+  background-color: rgba(246,247,249,1);
+}
+
+h1 {
+  font-size: 28px;
+  line-height: 36px;
+  margin: 16px 0;
+}
+
+h2 {
+  font-size: 22px;
+  line-height: 30px;
+  margin: 12px 0;
+}
+
+a {
+  text-decoration: none;
+  color: #222;
+}
+
+/* ====== FAVORITOS PAGE ====== */
+.favorites-page {
+  max-width: 1200px;
+  width: 100%;
+  margin: 20px auto 40px;
+  padding: 0 20px;
+}
+
+section {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin: 12px 0 28px;
+}
+
+p {
+  width: 100%;
+  background-color: rgba(0,0,0,0.05);
+  padding: 12px;
+  border: 1px solid rgba(0,0,0,0.1);
+  color: #555;
+}
+
+/* ====== CARDS ====== */
+.favorite-card {
+  width: 25%;      /* 4 por fila en desktop */
+  margin: 10px;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 12px;   /* 🔹 redondea las esquinas */
+  overflow: hidden;      /* asegura que la imagen también respete el borde redondeado */
+}
+
+.favorite-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background-color: #ddd;
+}
+
+.favorite-card h3 {
+  font-size: 18px;
+  line-height: 26px;
+  margin: 10px 12px;
+}
+
+.favorite-card button {
+  display: inline-block;
+  background-color: rgba(111,143,31,1);
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+  margin: 10px 12px;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 768px) {
+  .favorite-card {
+    width: 45%;   /* 2 por fila */
+  }
+}
+
+@media (max-width: 420px) {
+  .favorite-card {
+    width: 100%;  /* 1 por fila */
+  }
+  .favorite-card button {
+    display: block;
+    width: 90%;
+    margin: 10px auto;
+  }
+}
+

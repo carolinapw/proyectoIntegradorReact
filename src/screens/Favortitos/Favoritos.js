@@ -1,82 +1,68 @@
-import React, { Component, Link } from "react";
+import React, { Component } from "react";
+import { Link } from "react-router-dom"; 
 import "../../components/CardList/CardList.css";
-
-
+import "./Favoritos.css"
 
 class Favoritos extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: null, 
-      type: "",
-      cargando: false,
-      favoritos: false,
-      botonFav: "Agregar a Favoritos",
       peliculasFav: [],
-    seriesFav:[]
+      seriesFav: []
     };
   }
-  agregarFavoritos(){
-    let recuperoMovies = localStorage.getItem("favoritosM");
-    let recuperoSeries = localStorage.getItem("favoritosS");
+
+  componentDidMount() {
+    this.cargarFavoritos();
+  }
+
+  cargarFavoritos(){
+    const recuperoMovies = localStorage.getItem("favoritosM");
+    const recuperoSeries = localStorage.getItem("favoritosS");
+
+    const peliculasRecuperadas = recuperoMovies ? JSON.parse(recuperoMovies) : [];
+    const seriesRecuperadas = recuperoSeries ? JSON.parse(recuperoSeries) : [];
+
+    this.setState({
+      peliculasFav: peliculasRecuperadas,
+      seriesFav: seriesRecuperadas
+    });
+  };
+
+  eliminarFavoritos(id, type){
+    const key = type === "movie" ? "favoritosM" : "favoritosS";
+    const recupero = localStorage.getItem(key);
+    let lista = recupero ? JSON.parse(recupero) : [];
+
+    lista = lista.filter((item) => item.id !== id);
+    localStorage.setItem(key, JSON.stringify(lista));
+
    
-    let peliculasRecuperadas = recuperoMovies ? JSON.parse(recuperoMovies) : [];
-    let seriesRecuperadas = recuperoSeries ? JSON.parse(recuperoSeries) : [];
-
-    peliculasRecuperadas.push(this.props.item)
-    seriesRecuperadas.push(this.props.item)
-
-    localStorage.setItem("favoritosM", JSON.stringify(peliculasRecuperadas));
-    localStorage.setItem("favoritosS", JSON.stringify(seriesRecuperadas));
-
-    this.setState({favoritos: true, botonFav: "Elinar de favoritos"});
-
-}
-
-eliminarFavoritos(){
-    let recuperoMovies = localStorage.getItem("favoritosM");
-    let recuperoSeries = localStorage.getItem("favoritosS");
-   
-    let peliculasRecuperadas = recuperoMovies ? JSON.parse(recuperoMovies) : [];
-    let seriesRecuperadas = recuperoSeries ? JSON.parse(recuperoSeries) : [];
-
-    peliculasRecuperadas = peliculasRecuperadas.filter(item => item.id !== this.props.item.id)
-    seriesRecuperadas = seriesRecuperadas.filter(item => item.id !== this.props.item.id)
-
-    localStorage.setItem("favoritosM", JSON.stringify(peliculasRecuperadas));
-    localStorage.setItem("favoritosS", JSON.stringify(seriesRecuperadas));
-
-    this.setState({favoritos: true, botonFav: "Elinar de favoritos"});
-
-    
-    }
+    this.cargarFavoritos();
+  };
 
   render() {
-    const { data, peliculasFav, seriesFav } = this.state;
-
-    if (!data) {
-      return <p>Cargando detalle....</p>;
-    }
+    const { peliculasFav, seriesFav } = this.state;
 
     return (
       <main className="favorites-page">
         <h1>Mis Favoritos</h1>
 
         <section>
-          <h2>🎬 Películas</h2>
+          <h2>Películas</h2>
           {peliculasFav.length === 0 ? (
             <p>No tienes películas favoritas</p>
           ) : (
             peliculasFav.map((peli) => (
               <article key={peli.id} className="favorite-card">
                 <img
-                  src={`https://image.tmdb.org/t/p/w200${peli.poster_path}`}
+                  src={`https://image.tmdb.org/t/p/w200${peli.poster_path}`} 
                   alt={peli.title}
                 />
                 <h3>
                   <Link to={`/movie/${peli.id}`}>{peli.title}</Link>
                 </h3>
-                <button onClick={() => this.eliminarFavoritos(peli.id)}>
+                <button onClick={() => this.eliminarFavoritos(peli.id, "movie")}>
                   Eliminar
                 </button>
               </article>
@@ -85,7 +71,7 @@ eliminarFavoritos(){
         </section>
 
         <section>
-          <h2>📺 Series</h2>
+          <h2>Series</h2>
           {seriesFav.length === 0 ? (
             <p>No tienes series favoritas</p>
           ) : (
@@ -98,7 +84,7 @@ eliminarFavoritos(){
                 <h3>
                   <Link to={`/tv/${serie.id}`}>{serie.name}</Link>
                 </h3>
-                <button onClick={() => this.eliminarFavoritos(serie.id)}>
+                <button onClick={() => this.eliminarFavoritos(serie.id, "tv")}>
                   Eliminar
                 </button>
               </article>
@@ -109,4 +95,5 @@ eliminarFavoritos(){
     );
   }
 }
+
 export default Favoritos;
