@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Card from "../../components/Card/Card";
 import "../../components/CardList/CardList.css";
+import "./ListScreen.css";
 
 const apiKey = "d7dce97c9f45ff25eeb66dc3784d0bca"
 const base = "https://api.themoviedb.org/3"
@@ -62,6 +63,7 @@ class ListScreen extends Component {
         });
 
         return (
+        <section className="list-screen">
             <div className="group">
                 <header className="group-header">
                     <h3>{this.props.title}</h3>
@@ -81,12 +83,13 @@ class ListScreen extends Component {
             )}
         </div>
 
-        <div>
+        <div className="load-more">
           <button className="btn" onClick={() => this.handleLoadMore()} disabled={this.state.cargando}>
             {this.state.cargando ? "Cargando..." : "Cargar más"}
           </button>
         </div>
       </div>
+      </section>
     );
   }
 
