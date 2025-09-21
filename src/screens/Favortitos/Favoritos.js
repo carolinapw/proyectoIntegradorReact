@@ -36,7 +36,7 @@ class Favoritos extends Component {
   render() {
     return (
       <main className="favorites-page">
-        <h1>Mis Favoritos</h1>
+        <h1 className="myFavorites">Mis Favoritos</h1>
 
         <section>
           <h2>Películas</h2>

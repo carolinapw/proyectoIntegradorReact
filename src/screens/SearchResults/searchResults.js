@@ -81,22 +81,16 @@ class SearchResults extends Component{
 
     return (
       <React.Fragment>
-        <h1>Resultados de busqueda</h1>
+        <h1>Resultados de búsqueda</h1>
          <section className="card-container">
-          {this.state.data.map(item => {
-             const titulo = this.state.type === "movie" ? item.title : item.name;
-              const fecha = this.state.type === "movie" ? item.release_date : item.first_air_date;
-              const poster = item.poster_path
-              ? `https://image.tmdb.org/t/p/w342${item.poster_path}`
-              : "";
-
+          {this.state.data.map((item) => { 
             return (
               <article className="card" key={item.id}>
-                <img src={poster} alt={titulo} />
+                <img  src={item.poster_path ? `https://image.tmdb.org/t/p/w500${item.poster_path}` : ""}  alt={this.state.type === "movie" ? item.title : item.name} />
                 <div className="card-body">
-                  <h2>{titulo}</h2>
+                  <h2>{this.state.type === "movie" ? item.title : item.name}</h2>
                   <p><strong>Calificación:</strong> {item.vote_average}</p>
-                  <p><strong>Fecha de estreno:</strong> {fecha}</p>
+                  <p><strong>Fecha de estreno:</strong> {this.state.type === "movie" ? item.release_date : item.first_air_date}</p>
                   <p><strong>Sinopsis:</strong> {item.overview}</p>
                 </div>
               </article>

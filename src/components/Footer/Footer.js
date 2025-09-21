@@ -1,13 +1,12 @@
-import React from "react";
 import "./Footer.css"
 
 function Footer() {
     return(
         <section>
-            <article class="footer">
-                <p class="integrantes">Carolina Pico Wertag</p>
-                <p class="integrantes">Ema Fresco</p>
-                <p class="integrantes">Lola Otzet</p>
+            <article className="footer">
+                <p className="integrantes">Carolina Pico Wertag</p>
+                <p className="integrantes">Ema Fresco</p>
+                <p className="integrantes">Lola Otzet</p>
             </article>
         </section>
     )};

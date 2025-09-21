@@ -9,6 +9,7 @@ class Card extends Component {
         super(props);
         this.state = { verMas: false, textoBoton: "Ver descripción", esFavorito: false }
     }
+    
     componentDidMount(){
         let key = this.props.type === "movie" ? "favoritosM" : "favoritosS";
         let favoritos = localStorage.getItem(key) ? JSON.parse(localStorage.getItem(key)) : [];
@@ -27,17 +28,16 @@ class Card extends Component {
     let favoritos = recupero ? JSON.parse(recupero) : [];
 
     if (this.state.esFavorito) {
-     
       favoritos = favoritos.filter((f) => f.id !== this.props.item.id);
     } else {
-      
       favoritos.push(this.props.item);
     }
 
     localStorage.setItem(key, JSON.stringify(favoritos));
     this.setState({ esFavorito: !this.state.esFavorito});
-};
-    botonVerMas = () => {
+    };
+
+    botonVerMas() {
         this.setState((p) => ({
             verMas: !p.verMas,
             textoBoton: p.textoBoton === "Ver descripción" ? "Ocultar descripción" : "Ver descripción",
@@ -63,7 +63,7 @@ class Card extends Component {
                         <Link to={to}>{titulo}</Link>
                     </h4>
 
-                    <p className="more" onClick={this.botonVerMas}>{this.state.textoBoton}</p>
+                    <p className="more" onClick={() => this.botonVerMas()}>{this.state.textoBoton}</p>
 
                     {this.state.verMas && (
                         <section className="extra">

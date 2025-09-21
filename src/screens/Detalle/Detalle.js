@@ -15,9 +15,10 @@ class Detalle extends Component {
     };
   }
   componentDidMount() {
-    const id = Number(this.props.match.params.id);
+    const id = this.props.match.params.id;
+    let type = this.props.match.params.type
 
-    let type = this.props.match.path.includes("/movie/") ? "movie" : "tv";
+    if (type === "series") { type = "tv";}
 
     let url = `${base}/${type}/${id}?api_key=${apiKey}&language=en`
     
@@ -26,41 +27,32 @@ class Detalle extends Component {
             .then(data => 
                 this.setState({
                     data: data,
-                    type: type
+                    cargando:false, 
+                    type:type
                 }))
             .catch(e => this.setState({ error: e.message, cargando: false }));
-
-   
             }
   render() {
    
     if (!this.state.data) {
       return <p className="detail-loading">Cargando detalle....</p>;
     }
-
-    const titulo = this.state.type === "movie" ? this.state.data.title : this.state.data.name;
-    const fecha = this.state.type === "movie" ? this.state.data.release_date : this.state.data.first_air_date;
-    const duracion = this.state.type === "movie" ? `${this.state.data.runtime} min` : null;
-    const rating = this.state.data.vote_average;
-    const generos = this.state.data.genres.map((g) => g.name)
-    const poster = this.state.data.poster_path
-      ? `https://image.tmdb.org/t/p/w342${this.state.data.poster_path}`
-      : "";
  
     return (
       <React.Fragment>
-        <h1 className='detail'>Detalle de {this.state.type==="movie" ? "Pelicula" : "Serie"}</h1>
+        <h1 className='detail'>Detalle de {this.state.type==="movie" ? "Película" : "Serie"}</h1>
         <section className="card-container">
          <article className="card">
-            <img src={poster} alt={titulo} /> 
-            <div className="card-body">
-              <h2>{titulo}</h2>
-              <p><strong>Calificación:</strong> {rating}</p>
-              <p><strong>Fecha de estreno:</strong> {fecha}</p>
-              {duracion && <p><strong>Duración:</strong> {duracion}</p>}
-              <p><strong>Géneros:</strong> {generos}</p>
-              <p><strong>Sinopsis:</strong> {this.state.data.overview}</p>
-            </div>
+             <div>
+               <img className="poster" src={`https://image.tmdb.org/t/p/w500${this.state.data.poster_path}`} alt={this.state.type === "movie" ? this.state.data.title : this.state.data.name}/>
+        <h2>{this.state.type === "movie" ? this.state.data.title : this.state.data.name}</h2>
+        <p><strong>Fecha de estreno:</strong>{this.state.type === "movie" ? this.state.data.release_date : this.state.data.first_air_date}</p>
+        {this.state.type === "movie" ? <p className="label"><strong>Duración:</strong>{this.state.data.runtime} min</p> : null}
+        <p><strong>Calificación:</strong> {this.state.data.vote_average}</p>
+       <p className="label"><strong>Genero(s):</strong>{this.state.data.genres ? this.state.data.genres.map((g, idx) => (
+        <span key={idx}> {g.name}</span>)): "No disponible"}</p>
+        <p><strong>Sinopsis:</strong> {this.state.data.overview}</p>
+      </div>
          </article>
         </section>
       </React.Fragment>

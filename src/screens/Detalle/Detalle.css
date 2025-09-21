@@ -64,5 +64,10 @@
   .card-container .card > img{
     max-width:320px; justify-self:center;
   }
-  .card-container .card-body{ padding:14px; }
+
+  .card-container .card-body h2 {
+    font-size: 20px;
+  }
 }
+
+

@@ -15,19 +15,21 @@ import Favoritos from './screens/Favortitos/Favoritos.js';
 
 function App() {
   return (
-    <div className="App">      <Header />
+    <div className="app-shell">      
+    <Header />
+    <main className="app-main">
       <Switch>
           <Route path='/' exact={true} component={Home}/>
           <Route path="/movies/popular" component={MoviesPopular} />
           <Route path="/movies/now-playing" component={MoviesNowPlaying} />
           <Route path="/series/popular" component={SeriesPopular} />
           <Route path="/series/airing-today" component={SeriesAiringToday} />
-          <Route path="/movie/:id" component={Detalle} />
-          <Route path="/series/:id" component={Detalle} /> 
-          <Route path="/search/:type?/:query" component={SearchResults}/>
+           <Route path="/search/:type/:query" component={SearchResults}/>
+          <Route path="/:type/:id" component={Detalle} />
           <Route path= "/favorites" component={Favoritos}/>
           <Route component={NotFound} />
       </Switch>
+      </main>
       <Footer />
     </div>
   );
