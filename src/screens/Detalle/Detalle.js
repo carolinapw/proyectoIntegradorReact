@@ -49,7 +49,7 @@ class Detalle extends Component {
  
     return (
       <React.Fragment>
-        <h1 className='detail'>Detalle de {this.state.type==="movie" ? "Pelicula" : "Serie"}</h1>
+        <h1 className='detail'>Detalle de {this.state.type==="movie" ? "Película" : "Serie"}</h1>
         <section className="card-container">
          <article className="card">
             <img src={poster} alt={titulo} /> 

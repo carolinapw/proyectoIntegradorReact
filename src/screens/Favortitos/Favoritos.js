@@ -46,7 +46,7 @@ class Favoritos extends Component {
 
     return (
       <main className="favorites-page">
-        <h1>Mis Favoritos</h1>
+        <h1 className="myFavorites">Mis Favoritos</h1>
 
         <section>
           <h2>Películas</h2>
@@ -56,7 +56,7 @@ class Favoritos extends Component {
             peliculasFav.map((peli) => (
               <article key={peli.id} className="favorite-card">
                 <img
-                  src={`https://image.tmdb.org/t/p/w200${peli.poster_path}`} 
+                  src={`https://image.tmdb.org/t/p/w342${peli.poster_path}`} 
                   alt={peli.title}
                 />
                 <h3>
@@ -78,7 +78,7 @@ class Favoritos extends Component {
             seriesFav.map((serie) => (
               <article key={serie.id} className="favorite-card">
                 <img
-                  src={`https://image.tmdb.org/t/p/w200${serie.poster_path}`}
+                  src={`https://image.tmdb.org/t/p/w342${serie.poster_path}`}
                   alt={serie.name}
                 />
                 <h3>

@@ -3,10 +3,13 @@
 .group{ margin:24px 10px; }
 
 .group-header{
-  display:flex; align-items:baseline; justify-content:space-between;
+  display:flex;
+  align-items:center;
+  width:100%;              
+  gap:12px;
   margin-bottom:12px;
 }
-.group-header h3{ margin:0; font-size:27px; }
+.group-header h3{ margin:0; font-size:27px; flex:1;  }
 
 .seeAll{
   display:inline-block;
@@ -17,6 +20,7 @@
   color:#fff;
   text-decoration:none;
   font-weight:600;
+  margin-left:auto;
 }
 .seeAll:hover{ filter:brightness(.95); }
 

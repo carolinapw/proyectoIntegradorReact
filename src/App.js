@@ -15,7 +15,9 @@ import Favoritos from './screens/Favortitos/Favoritos.js';
 
 function App() {
   return (
-    <div className="App">      <Header />
+    <div className="app-shell">      
+    <Header />
+    <main className="app-main">
       <Switch>
           <Route path='/' exact={true} component={Home}/>
           <Route path="/movies/popular" component={MoviesPopular} />
@@ -28,6 +30,7 @@ function App() {
           <Route path= "/favorites" component={Favoritos}/>
           <Route component={NotFound} />
       </Switch>
+      </main>
       <Footer />
     </div>
   );
