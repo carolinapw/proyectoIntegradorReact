@@ -21,14 +21,17 @@ class ListScreen extends Component {
         let url = `${base}/${this.props.type}/${this.props.section}?api_key=${apiKey}&language=en-US&page=${this.state.page}`
     
         fetch(url)
-            .then(r => r.json())
-            .then(data => 
+            .then((r) => r.json())
+            .then((data) => {
                 this.setState({
                     items: data.results,
                     cargando: false,
                     page: 1
-                }))
-            .catch(e => this.setState({ error: e.message, cargando: false }));
+                })
+            })
+            .catch((e) => {
+                this.setState({ error: e.message, cargando: false })
+            });
     }
 
     handleLoadMore() {
@@ -36,14 +39,17 @@ class ListScreen extends Component {
         let url = `${base}/${this.props.type}/${this.props.section}?api_key=${apiKey}&language=en-US&page=${next}`
 
         fetch(url)
-            .then(r => r.json())
-            .then(data => 
-                this.setState(p => ({
+            .then((r) => r.json())
+            .then((data) => {
+                this.setState((p) => ({
                     items: p.items.concat(data.results),
                     page: next,
                     cargando: false
-            })))
-            .catch(e => this.setState({ error: e.message, cargando: false }));
+                }))
+            })
+            .catch((e) => {
+                this.setState({ error: e.message, cargando: false })
+            });
 
     }
 
@@ -52,13 +58,11 @@ class ListScreen extends Component {
     }
 
     render() {
-
         if (this.state.cargando) {
-      return <p>Cargando resultados....</p>;}
+            return <p>Cargando resultados....</p>;}
 
-        let filtered = this.state.items.filter(it => {
-         const t = this.props.type === "movie" ? (it.title ? it.title : "") : (it.name ? it.name : "");
-
+        let filtered = this.state.items.filter((it) => {
+            let t = this.props.type === "movie" ? (it.title ? it.title : "") : (it.name ? it.name : "");
             return t.toLowerCase().includes(this.state.filter.toLowerCase());
         });
 

@@ -49,26 +49,36 @@ class Header extends Component {
         </nav>
       
         <form className="search-container" onSubmit={(event) => this.handleSubmit(event)} >
+          
           <input
             type="text"
             placeholder={`Buscar ${this.state.type=== "movie" ? "peliculas" : "series"  }`}
             value={this.state.query}
             onChange={(e) => {
               console.log(e.target);
-              
               this.setState({ query: e.target.value });
-               
-              }}
-             
+              }} 
           />
-            <input onChange={(e) => {
-               this.setState({ type: e.target.value });
-            }} type="radio" name="media" value="movie" checked={this.state.type ==="movie" ? true : false}/>
-            <label for="media">Movie</label>
-            <input onChange={(e) => {
-               this.setState({ type: e.target.value });
-            }} type="radio" name="media" value="tv" checked={this.state.type ==="tv" ? true : false}/>
+
+          <input 
+            onChange={(e) => {
+              this.setState({ type: e.target.value });
+            }} 
+            type="radio" name="media" value="movie" 
+            checked={this.state.type ==="movie" ? true : false}
+          />
+
+          <label for="media">Movie</label>
+          <input 
+            onChange={(e) => {
+              this.setState({ type: e.target.value });
+            }} 
+            type="radio" name="media" value="tv" 
+            checked={this.state.type ==="tv" ? true : false}
+          />
+
             <label for="media">Serie</label>
+
           <button type="submit">Buscar</button>
         </form>
       </header>
