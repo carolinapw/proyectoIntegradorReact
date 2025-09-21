@@ -22,9 +22,8 @@ function App() {
           <Route path="/movies/now-playing" component={MoviesNowPlaying} />
           <Route path="/series/popular" component={SeriesPopular} />
           <Route path="/series/airing-today" component={SeriesAiringToday} />
-          <Route path="/movie/:id" component={Detalle} />
-          <Route path="/series/:id" component={Detalle} /> 
-          <Route path="/search/:type?/:query" component={SearchResults}/>
+           <Route path="/search/:type/:query" component={SearchResults}/>
+          <Route path="/:type/:id" component={Detalle} />
           <Route path= "/favorites" component={Favoritos}/>
           <Route component={NotFound} />
       </Switch>

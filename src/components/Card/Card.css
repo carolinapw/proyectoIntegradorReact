@@ -33,7 +33,7 @@
   margin:0; cursor:pointer;
   color:var(--brand); text-decoration:underline;
 }
-.extra{ font-size:.95rem; color:#475569; }
+.extra{ font-size:.95rem; color:#000000; background-color: white; }
 
 .btn{
   display:inline-block;
