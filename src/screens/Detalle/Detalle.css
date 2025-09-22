@@ -1,73 +1,59 @@
-/* ---------- Detalle (scopeado al contenedor) ---------- */
-:root { --brand: rgb(120,148,33); }
+.detail{
+  margin:16px 12px 10px;
+  font-size:27px;
+}
 
-.card-container{ padding:10px; }
+/* contenedor general (opcional para centrar) */
+.card-container{
+  padding:10px;
+  margin:0 auto;
+}
 
-/* Sólo afecta a .card dentro del detalle */
 .card-container .card{
   display:grid;
-  grid-template-columns:260px 1fr;
+  grid-template-columns:300px 1fr; 
   gap:20px;
+  align-items:start;
   background:#fff;
   border:1px solid #e5e7eb;
   border-radius:14px;
   box-shadow:0 8px 16px rgba(0,0,0,.08);
-  overflow:hidden;
+  padding:12px;
 }
 
-/* Poster (solo dentro del detalle) */
-.card-container .card > img{
+.card-container .card .poster{
   width:100%;
-  height:auto;
-  display:block;
+  aspect-ratio:2/3;
   object-fit:cover;
+  border-radius:10px;
+  display:block;
 }
 
-.card-container .card-body{
-  padding:16px;
-  display:grid;
-  gap:10px;
-  padding-top: 30px;
+.card-container .card .card-body{ display:block; }
+.card-container .card .card-body h2{
+  margin:0 0 8px 0;
+  font-size:26px;
+  color:#111827;
 }
-
-.detail {
-    margin: 24px 10px;
-    font-size: 27px;
-    margin-bottom: 12px;
-}
-
-.card-container h1{
-  margin:0 0 12px;
-  font-size:clamp(1.25rem,2.5vw,1.8rem);
-}
-.card-container .card-body h2{
-  margin:0;
-  font-size:23px;
-}
-
-/* Filas de info */
-.card-container .card-body p{
-  margin:0;
-  line-height:1.5;
+.card-container .card .card-body p{
+  margin:6px 0;
+  line-height:1.55;
   color:#334155;
 }
+.card-container .card .card-body strong{ color:rgb(120,148,33); }
 
-/* Etiquetas con color de marca */
-.card-container .card-body strong{
-  color:var(--brand);
-  font-weight:700;
+@media (max-width: 768px){
+  .card-container .card{
+    grid-template-columns:1fr;
+    gap:14px;
+  }
+  .card-container .card .poster{
+    max-width:320px;
+    justify-self:center; 
+  }
+  .card-container .card .card-body h2{ font-size:22px; }
 }
 
-/* Responsive */
-@media (max-width:720px){
-  .card-container .card{ grid-template-columns:1fr; }
-  .card-container .card > img{
-    max-width:320px; justify-self:center;
-  }
-
-  .card-container .card-body h2 {
-    font-size: 20px;
-  }
+@media (max-width: 425px){
+  .card-container .card .card-body h2{ font-size:20px; }
 }
-
-

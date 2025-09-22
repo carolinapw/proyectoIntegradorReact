@@ -39,23 +39,32 @@ class Detalle extends Component {
     }
  
     return (
-      <React.Fragment>
-        <h1 className='detail'>Detalle de {this.state.type==="movie" ? "Película" : "Serie"}</h1>
+      <>
+        <h1 className='detail'>
+          Detalle de {this.state.type==="movie" ? "Película" : "Serie"}
+        </h1>
         <section className="card-container">
-         <article className="card">
-             <div>
-               <img className="poster" src={`https://image.tmdb.org/t/p/w500${this.state.data.poster_path}`} alt={this.state.type === "movie" ? this.state.data.title : this.state.data.name}/>
-        <h2>{this.state.type === "movie" ? this.state.data.title : this.state.data.name}</h2>
-        <p><strong>Fecha de estreno:</strong>{this.state.type === "movie" ? this.state.data.release_date : this.state.data.first_air_date}</p>
-        {this.state.type === "movie" ? <p className="label"><strong>Duración:</strong>{this.state.data.runtime} min</p> : null}
-        <p><strong>Calificación:</strong> {this.state.data.vote_average}</p>
-       <p className="label"><strong>Genero(s):</strong>{this.state.data.genres ? this.state.data.genres.map((g, idx) => (
-        <span key={idx}> {g.name}</span>)): "No disponible"}</p>
-        <p><strong>Sinopsis:</strong> {this.state.data.overview}</p>
-      </div>
-         </article>
+          <article className="card">
+
+              <img 
+                className="poster" 
+                src={`https://image.tmdb.org/t/p/w500${this.state.data.poster_path}`} 
+                alt={this.state.type === "movie" ? this.state.data.title : this.state.data.name}
+              />
+
+              <div className="card-body">
+                <h2>{this.state.type === "movie" ? this.state.data.title : this.state.data.name}</h2>
+                <p><strong>Fecha de estreno:</strong>{this.state.type === "movie" ? this.state.data.release_date : this.state.data.first_air_date}</p>
+                {this.state.type === "movie" ? <p className="label"><strong>Duración:</strong>{this.state.data.runtime} min</p> : null}
+                <p><strong>Calificación:</strong> {this.state.data.vote_average}</p>
+                <p className="label"><strong>Genero(s):</strong>{this.state.data.genres ? this.state.data.genres.map((g, idx) => (
+                <span key={idx}> {g.name}</span>)): "No disponible"}</p>
+                <p><strong>Sinopsis:</strong> {this.state.data.overview}</p>
+              </div>
+
+          </article>
         </section>
-      </React.Fragment>
+      </>
     );
   }
 }
