@@ -21,7 +21,7 @@ class Card extends Component {
         }
        
     }
-    toggleFavorito(){
+    botonFavorito(){
     let key = this.props.type === "movie" ? "favoritosM" : "favoritosS";
 
     let recupero = localStorage.getItem(key);
@@ -73,7 +73,7 @@ class Card extends Component {
 
                     <div className="card-actions">
                         <Link className="btn" to={to}>Ir a detalle</Link>
-                           <button className="btn" onClick={() => this.toggleFavorito()}> 
+                           <button className="btn" onClick={() => this.botonFavorito()}> 
                             {this.state.esFavorito ? "Eliminar de favoritos" : "Agregar a favoritos"}</button>
                     </div>
                 </div>

@@ -32,6 +32,34 @@ class Favoritos extends Component {
       seriesFav: seriesRecuperadas
     });
   }
+ eliminarFavorito(id, type) {
+  let listaActual;
+  let key;
+
+  if (type === "movie") {
+    listaActual = this.state.peliculasFav;
+    key = "favoritosM";
+  } else {
+    listaActual = this.state.seriesFav;
+    key = "favoritosS";
+  }
+
+
+  let nuevaLista = listaActual.filter(function(item) {
+    return item.id !== id;
+  });
+
+  let listaString = JSON.stringify(nuevaLista);
+  localStorage.setItem(key, listaString);
+
+ 
+  if (type === "movie") {
+    this.setState({ peliculasFav: nuevaLista });
+  } else {
+    this.setState({ seriesFav: nuevaLista });
+  }
+}
+
 
   render() {
     return (
@@ -52,16 +80,8 @@ class Favoritos extends Component {
                 <h3>
                   <Link to={"/movie/" + peli.id}>{peli.title}</Link>
                 </h3>
-                <button
-                  onClick={() => {
-                    let lista = this.state.peliculasFav.filter(
-                      (item) => item.id !== peli.id
-                    );
-                    localStorage.setItem("favoritosM", JSON.stringify(lista));
-                    this.setState({ peliculasFav: lista });
-                  }}
-                >
-                  Eliminar
+               <button onClick={() => this.eliminarFavorito(peli.id, "movie")}>
+                 Eliminar
                 </button>
               </article>
             ))
@@ -82,15 +102,7 @@ class Favoritos extends Component {
                 <h3>
                   <Link to={"/tv/" + serie.id}>{serie.name}</Link>
                 </h3>
-                <button
-                  onClick={() => {
-                    let lista = this.state.seriesFav.filter(
-                      (item) => item.id !== serie.id
-                    );
-                    localStorage.setItem("favoritosS", JSON.stringify(lista));
-                    this.setState({ seriesFav: lista });
-                  }}
-                >
+                <button onClick={() => this.eliminarFavorito(serie.id, "tv")}>
                   Eliminar
                 </button>
               </article>
