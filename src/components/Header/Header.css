@@ -43,31 +43,50 @@
 }
 
 /* Responsive header */
-@media (max-width: 900px){
+@media (max-width: 950px){
   .app-header{ 
-    flex-wrap: wrap; 
-    row-gap: 12px;        /* separa filas cuando se envuelven */
+    flex-wrap: wrap;
+    row-gap: 12px;
   }
-  .app-header .nav{ 
-    order: 2; 
-    width: 100%; 
-    gap: 12px; 
-    flex-wrap: wrap; 
+  .app-header .nav{
+    order: 2;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
   }
-  .search-container{ 
-    order: 3; 
-    width: 100%; 
-    /* opcional: centrar buscador en mobile */
-    /* justify-content: center; */
+  .search-container{
+    order: 3;
+    width: 100%;
+    justify-content: center;
   }
-  .search-input{ 
-    width: 100%;          /* el input ocupa todo el ancho disponible */
+  .search-input{
+    width: 100%;
   }
-  /* opcional: si querés que el botón también se estire en mobile */
-  /* .search-container .btn{ width:100%; } */
 }
 
 @media (max-width: 420px){
-  .app-header .nav{ gap: 10px; }
+  .search-container{ 
+    order: 3; 
+    width: 100%; 
+    flex-direction: column;    
+    align-items: stretch;       
+    gap: 10px;
+  }
+  .search-input,
+  .search-btn{
+    width: 100%;               
 }
-
+search-container .radio-group{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start; /* que queden alineados a la izquierda */
+  }
+  .search-container label{
+    font-size: 14px;
+    gap: 6px;
+  }
+  .search-container input[type="radio"]{
+    transform: scale(1.2); /* opcional, hace los botones un poco más grandes */
+  }
+}
