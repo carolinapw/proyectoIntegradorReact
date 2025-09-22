@@ -11,9 +11,7 @@
   display:grid;
   grid-template-columns:300px 1fr; 
   gap:20px;
-  background:#fff;
   border-radius:14px;
-  box-shadow:0 8px 16px rgba(0,0,0,.08);
 }
 
 .card-container .card .poster{
@@ -24,7 +22,10 @@
 .card-container .card .card-body p{
   margin:6px 0;
 }
-.card-container .card .card-body strong{ color:rgb(120,148,33); }
+
+.card-container .card .card-body strong{ 
+  color:rgb(120,148,33); 
+}
 
 @media (max-width: 768px){
   .card-container .card{

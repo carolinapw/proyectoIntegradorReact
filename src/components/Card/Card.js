@@ -7,7 +7,11 @@ const img = "https://image.tmdb.org/t/p/w342"
 class Card extends Component {
     constructor(props) {
         super(props);
-        this.state = { verMas: false, textoBoton: "Ver descripción", esFavorito: false }
+        this.state = { 
+            verMas: false, 
+            textoBoton: "Ver descripción", 
+            esFavorito: false 
+        }
     }
     
     componentDidMount(){
@@ -16,25 +20,26 @@ class Card extends Component {
         let coincidencias = favoritos.filter(fav => fav.id === this.props.item.id);
         if (coincidencias.length > 0 ) {
              this.setState({esFavorito: true})
-        } else{
+        } else {
              this.setState({esFavorito: false})
         }
        
     }
+
     botonFavorito(){
-    let key = this.props.type === "movie" ? "favoritosM" : "favoritosS";
+        let key = this.props.type === "movie" ? "favoritosM" : "favoritosS";
 
-    let recupero = localStorage.getItem(key);
-    let favoritos = JSON.parse(recupero);
+        let recupero = localStorage.getItem(key);
+        let favoritos = JSON.parse(recupero);
 
-    if (this.state.esFavorito) {
-      favoritos = favoritos.filter((f) => f.id !== this.props.item.id);
-    } else {
-      favoritos.push(this.props.item);
-    }
+        if (this.state.esFavorito) {
+            favoritos = favoritos.filter((f) => f.id !== this.props.item.id);
+        } else {
+            favoritos.push(this.props.item);
+        }
 
-    localStorage.setItem(key, JSON.stringify(favoritos));
-    this.setState({ esFavorito: !this.state.esFavorito});
+        localStorage.setItem(key, JSON.stringify(favoritos));
+        this.setState({ esFavorito: !this.state.esFavorito});
     };
 
     botonVerMas() {
