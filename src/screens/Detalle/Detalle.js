@@ -30,7 +30,7 @@ class Detalle extends Component {
                     cargando:false, 
                     type:type
                 }))
-            .catch(e => this.setState({ error: e.message, cargando: false }));
+            .catch(err => console.log(err));
             }
   render() {
    

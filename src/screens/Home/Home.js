@@ -10,7 +10,6 @@ class Home extends Component {
             seriesPopulares: [], 
             seriesHoy: [], 
             cargando: false,
-            error: null,
         }
     }
 
@@ -45,9 +44,7 @@ class Home extends Component {
     }
 
     render() {
-        
-        if (this.state.error) return <p className="error">Error: {this.state.error}</p>;
-           if (this.state.cargando) { return <p>Cargando resultados....</p>;}
+        if (this.state.cargando) { return <p>Cargando resultados....</p>;}
 
         return (
             <>

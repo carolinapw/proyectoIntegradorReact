@@ -14,9 +14,9 @@ class ListScreen extends Component {
             page: 1, 
             filter: "", 
             cargando: false, 
-            error: null };
-    }
 
+        }
+    }
     componentDidMount() { 
         let url = `${base}/${this.props.type}/${this.props.section}?api_key=${apiKey}&language=en-US&page=${this.state.page}`
     
@@ -30,7 +30,7 @@ class ListScreen extends Component {
                 })
             })
             .catch((e) => {
-                this.setState({ error: e.message, cargando: false })
+                this.setState({ error: e.message})
             });
     }
 
@@ -47,10 +47,7 @@ class ListScreen extends Component {
                     cargando: false
                 }))
             })
-            .catch((e) => {
-                this.setState({ error: e.message, cargando: false })
-            });
-
+            .catch(err => console.log(err));
     }
 
     handleFilter(event) {
@@ -79,7 +76,7 @@ class ListScreen extends Component {
                     />
                 </header>
 
-        {this.state.error && <p className="error">Error: {this.state.error}</p>}
+        
 
         <div className="grid">
             {filtered.map(it => 
