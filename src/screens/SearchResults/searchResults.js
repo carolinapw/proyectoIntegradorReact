@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Card from "../../components/Card/Card";
+import "./searchResults.css";
 
 const apiKey = "d7dce97c9f45ff25eeb66dc3784d0bca"
 
@@ -57,8 +58,8 @@ class SearchResults extends Component{
     }
 
     return (
-      <React.Fragment>
-        <h1>Resultados de búsqueda</h1>
+      <section className="results-page">
+        <h1 className="results-title">Resultados de búsqueda</h1>
          <section className="card-container">
           {this.state.data.map((item) => { 
             return (
@@ -66,7 +67,7 @@ class SearchResults extends Component{
             );
           })}
         </section>
-      </React.Fragment>
+      </section>
     );
   }
 }
