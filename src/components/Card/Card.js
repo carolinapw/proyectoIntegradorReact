@@ -25,7 +25,7 @@ class Card extends Component {
     let key = this.props.type === "movie" ? "favoritosM" : "favoritosS";
 
     let recupero = localStorage.getItem(key);
-    let favoritos = recupero ? JSON.parse(recupero) : [];
+    let favoritos = JSON.parse(recupero);
 
     if (this.state.esFavorito) {
       favoritos = favoritos.filter((f) => f.id !== this.props.item.id);

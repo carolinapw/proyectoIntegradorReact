@@ -8,7 +8,7 @@
   color: #fff;
 } 
 
-.app-header .brand a{ color:#fff; text-decoration:none; font-weight:800; font-size:28px; }
+.app-header .brand a{ color:#fff; text-decoration:none; font-weight:800; font-size:28p; }
 
 .app-header .nav{
   display:flex; 
@@ -42,9 +42,32 @@
   cursor:pointer;
 }
 
+/* Responsive header */
 @media (max-width: 900px){
-  .app-header{ flex-wrap:wrap; }
-  .app-header .nav{ order:2; width:100%; gap:12px; }
-  .search-container{ order:3; width:100%; }
-  .search-container input[type="text"]{ width:100%; }
+  .app-header{ 
+    flex-wrap: wrap; 
+    row-gap: 12px;        /* separa filas cuando se envuelven */
+  }
+  .app-header .nav{ 
+    order: 2; 
+    width: 100%; 
+    gap: 12px; 
+    flex-wrap: wrap; 
+  }
+  .search-container{ 
+    order: 3; 
+    width: 100%; 
+    /* opcional: centrar buscador en mobile */
+    /* justify-content: center; */
+  }
+  .search-input{ 
+    width: 100%;          /* el input ocupa todo el ancho disponible */
+  }
+  /* opcional: si querés que el botón también se estire en mobile */
+  /* .search-container .btn{ width:100%; } */
 }
+
+@media (max-width: 420px){
+  .app-header .nav{ gap: 10px; }
+}
+
