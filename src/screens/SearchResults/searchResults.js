@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Card from "../../components/Card/Card";
 
 const apiKey = "d7dce97c9f45ff25eeb66dc3784d0bca"
 
@@ -61,15 +62,7 @@ class SearchResults extends Component{
          <section className="card-container">
           {this.state.data.map((item) => { 
             return (
-              <article className="card" key={item.id}>
-                <img  src={item.poster_path ? `https://image.tmdb.org/t/p/w500${item.poster_path}` : ""}  alt={this.state.type === "movie" ? item.title : item.name} />
-                <div className="card-body">
-                  <h2>{this.state.type === "movie" ? item.title : item.name}</h2>
-                  <p><strong>Calificación:</strong> {item.vote_average}</p>
-                  <p><strong>Fecha de estreno:</strong> {this.state.type === "movie" ? item.release_date : item.first_air_date}</p>
-                  <p><strong>Sinopsis:</strong> {item.overview}</p>
-                </div>
-              </article>
+              <Card item={item} type={this.state.type}/>
             );
           })}
         </section>

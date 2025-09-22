@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import "../../components/CardList/CardList.css";
-import "./Favoritos.css";
 
+import "./Favoritos.css";
+import Card from "../../components/Card/Card";
 class Favoritos extends Component {
   constructor(props) {
     super(props);
@@ -71,20 +70,13 @@ class Favoritos extends Component {
           {this.state.peliculasFav.length === 0 ? (
             <p>No tienes películas favoritas</p>
           ) : (
-            this.state.peliculasFav.map((peli) => (
-              <article key={peli.id} className="favorite-card">
-                <img
-                  src={"https://image.tmdb.org/t/p/w200" + peli.poster_path}
-                  alt={peli.title}
-                />
-                <h3>
-                  <Link to={"/movie/" + peli.id}>{peli.title}</Link>
-                </h3>
-               <button onClick={() => this.eliminarFavorito(peli.id, "movie")}>
-                 Eliminar
-                </button>
-              </article>
-            ))
+            <article className="favorite-card">
+          {this.state.peliculasFav.map((item) => { 
+            return (
+              <Card item={item} type="movie"/>
+            );
+          })}
+        </article>
           )}
         </section>
 
@@ -93,20 +85,13 @@ class Favoritos extends Component {
           {this.state.seriesFav.length === 0 ? (
             <p>No tienes series favoritas</p>
           ) : (
-            this.state.seriesFav.map((serie) => (
-              <article key={serie.id} className="favorite-card">
-                <img
-                  src={"https://image.tmdb.org/t/p/w200" + serie.poster_path}
-                  alt={serie.name}
-                />
-                <h3>
-                  <Link to={"/tv/" + serie.id}>{serie.name}</Link>
-                </h3>
-                <button onClick={() => this.eliminarFavorito(serie.id, "tv")}>
-                  Eliminar
-                </button>
-              </article>
-            ))
+           <article className="favorite-card">
+          {this.state.seriesFav.map((item) => { 
+            return (
+              <Card item={item} type="movie"/>
+            );
+          })}
+        </article>
           )}
         </section>
       </main>

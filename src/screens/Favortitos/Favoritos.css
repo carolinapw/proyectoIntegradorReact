@@ -32,10 +32,11 @@
 
 .favorite-card img{
   width: 100%;
-  aspect-ratio: 2 / 3;
+  height: 300px;   /* fijo el alto */
   object-fit: cover;
   display: block;
 }
+
 
 .favorite-card h3{
   font-size: 18px;
