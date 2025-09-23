@@ -67,7 +67,8 @@ class SearchResults extends Component{
             );
           })}
         </section>
-      </section>
+     </React.Fragment>
+     
     );
   }
 }
