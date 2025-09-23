@@ -11,7 +11,7 @@ class SearchResults extends Component{
         query: "", 
         type: "",
         data:null, 
-        cargando:false,
+        cargando:true,
     };
   }
     
@@ -53,10 +53,12 @@ class SearchResults extends Component{
     if (this.state.cargando) {
       return <p>Cargando resultados....</p>;
     }
+    if(this.state.data.length===0){
+       return <p>No se encontraron resultados</p>
+    }
     if(!this.state.data){
        return <p>No se encontraron resultados</p>
     }
-
     return (
       <React.Fragment>
         <h1>Resultados de búsqueda</h1>
