@@ -22,9 +22,9 @@ class SearchResults extends Component{
     if (type === "movie") {
       fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}&include_adult=false&language=en-US&page=1`)
         .then(res => res.json())
-        .then(res => {
+        .then(data => {
           this.setState({
-            data: res.results,
+            data: data.results,
             type: type,
             query: query,
             cargando: false
@@ -32,12 +32,12 @@ class SearchResults extends Component{
         }
         ) 
         .catch(err => console.log(err));
-            }else {
-                    fetch(`https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&query=${query}&include_adult=false&language=en-US&page=1`)
+    } else {
+      fetch(`https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&query=${query}&include_adult=false&language=en-US&page=1`)
         .then(res => res.json())
-        .then(res => {
+        .then(data => {
           this.setState({
-            data: res.results,
+            data: data.results,
             type: type,
             query: query,
             cargando: false
@@ -45,9 +45,8 @@ class SearchResults extends Component{
         }
         )
         .catch(err => console.log(err));
-            }
-
     }
+  }
      
   render() {
     if (this.state.cargando) {
@@ -60,17 +59,16 @@ class SearchResults extends Component{
        return <p>No se encontraron resultados</p>
     }
     return (
-      <React.Fragment>
+      <>
         <h1>Resultados de búsqueda</h1>
          <section className="results-card-container">
           {this.state.data.map((item) => { 
             return (
-              <Card item={item} type={this.state.type}/>
+              <Card key={`${this.state.type}-${item.id}`} item={item} type={this.state.type}/>
             );
           })}
         </section>
-     </React.Fragment>
-     
+     </>
     );
   }
 }
