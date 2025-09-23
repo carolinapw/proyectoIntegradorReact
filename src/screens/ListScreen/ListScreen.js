@@ -17,6 +17,7 @@ class ListScreen extends Component {
 
         }
     }
+
     componentDidMount() { 
         let url = `${base}/${this.props.type}/${this.props.section}?api_key=${apiKey}&language=en-US&page=${this.state.page}`
     
@@ -29,9 +30,7 @@ class ListScreen extends Component {
                     page: 1
                 })
             })
-            .catch((e) => {
-                this.setState({ error: e.message})
-            });
+            .catch( error => console.log(error))
     }
 
     handleLoadMore() {
@@ -64,36 +63,35 @@ class ListScreen extends Component {
         });
 
         return (
-        <section className="list-screen">
-            <div className="group">
-                <header className="group-header">
-                    <h3>{this.props.title}</h3>
-                    <input
-                        type="text"
-                        placeholder="Filtrar…"
-                        value={this.state.filter}
-                        onChange={(event)=>this.handleFilter(event)}
-                    />
-                </header>
+            <section className="list-screen">
+                <div className="group">
 
-        
+                    <header className="group-header">
+                        <h3>{this.props.title}</h3>
+                        <input
+                            type="text"
+                            placeholder="Filtrar…"
+                            value={this.state.filter}
+                            onChange={(event)=>this.handleFilter(event)}
+                        />
+                    </header>
 
-        <div className="grid">
-            {filtered.map(it => 
-                <Card key={`${this.props.type}-${it.id}`} item={it} type={this.props.type} />
-            )}
-        </div>
+                    <div className="grid">
+                        {filtered.map(it => 
+                        <Card key={`${this.props.type}-${it.id}`} item={it} type={this.props.type} />
+                        )}
+                    </div>
 
-        <div className="load-more">
-          <button className="btn" onClick={() => this.handleLoadMore()} disabled={this.state.cargando}>
-            {this.state.cargando ? "Cargando..." : "Cargar más"}
-          </button>
-        </div>
-      </div>
+                    <div className="load-more">
+                        <button className="btn" onClick={() => this.handleLoadMore()} disabled={this.state.cargando}>
+                        {this.state.cargando ? "Cargando..." : "Cargar más"}
+                        </button>
+                    </div>
+
+                </div>
       </section>
-    );
+    )
   }
-
 }
 
 export default ListScreen

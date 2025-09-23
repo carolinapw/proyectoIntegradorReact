@@ -10,7 +10,9 @@ class CardList extends Component {
       <section className="group">
         <header className="group-header">
             <h3>{this.props.title}</h3>
-            {this.props.seeAllTo && <Link className="seeAll" to={this.props.seeAllTo}>Ver todas</Link>}
+            {this.props.seeAllTo ? (
+              <Link className="seeAll" to={this.props.seeAllTo}>Ver todas</Link>
+            ) : null}
         </header>
 
         <div className="grid">

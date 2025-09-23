@@ -15,23 +15,27 @@ class Detalle extends Component {
     };
   }
   componentDidMount() {
-    const id = this.props.match.params.id;
+    let id = this.props.match.params.id
     let type = this.props.match.params.type
 
-    if (type === "series") { type = "tv";}
+    if (type === "series") { 
+      type = "tv"
+    }
 
     let url = `${base}/${type}/${id}?api_key=${apiKey}&language=en`
     
-        fetch(url)
-            .then(r => r.json())
-            .then(data => 
-                this.setState({
-                    data: data,
-                    cargando:false, 
-                    type:type
-                }))
-            .catch(err => console.log(err));
-            }
+      fetch(url)
+        .then(r => r.json())
+        .then(data => 
+          this.setState({
+            data: data,
+            cargando:false, 
+            type:type
+          })
+        )
+        .catch(err => console.log(err));
+  }
+
   render() {
    
     if (!this.state.data) {
@@ -45,7 +49,7 @@ class Detalle extends Component {
         </h1>
         <section className="card-container">
           <article className="card">
-
+            
               <img 
                 className="poster" 
                 src={`https://image.tmdb.org/t/p/w500${this.state.data.poster_path}`} 

@@ -1,14 +1,17 @@
-.app-header{
-  position: sticky;  
+.app-header{ 
   display: flex; 
-  align-items: center;
   gap: 12px; 
   padding: 10px 16px;
   background: rgb(120,148,33); 
-  color: #fff;
+  align-items: center;
 } 
 
-.app-header .brand a{ color:#fff; text-decoration:none; font-weight:800; font-size:28p; }
+.app-header .brand a{ 
+  color:#fff; 
+  text-decoration:none; 
+  font-weight:800; 
+  font-size:26px; 
+}
 
 .app-header .nav{
   display:flex; 
@@ -17,11 +20,11 @@
   flex:1 1 auto; 
   white-space:nowrap; 
 }
-.app-header .nav a{ color:#f1f5f9; text-decoration:none; }
-.app-header .nav a:hover{ color:#fff; }
 
 .search-container{
-  margin-left:auto; display:flex; align-items:center; gap:8px;
+  display:flex; 
+  align-items:center; 
+  gap:8px;
   flex:0 0 auto;
 }
 .search-container input[type="text"]{

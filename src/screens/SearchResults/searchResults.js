@@ -60,14 +60,14 @@ class SearchResults extends Component{
     return (
       <React.Fragment>
         <h1>Resultados de búsqueda</h1>
-         <section className="results-card-container">
+         <section className="card-container">
           {this.state.data.map((item) => { 
             return (
               <Card item={item} type={this.state.type}/>
             );
           })}
         </section>
-      </React.Fragment>
+      </section>
     );
   }
 }

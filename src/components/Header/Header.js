@@ -60,8 +60,9 @@ class Header extends Component {
               this.setState({ query: e.target.value });
               }} 
           />
-<div className="radio-group">
- <input 
+
+        <div className="radio-group">
+          <input 
             onChange={(e) => {
               this.setState({ type: e.target.value });
             }} 
@@ -79,7 +80,7 @@ class Header extends Component {
           />
 
             <label for="media">Serie</label>
-</div>
+        </div>
           <button type="submit">Buscar</button>
         </form>
       </header>

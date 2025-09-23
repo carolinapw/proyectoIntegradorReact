@@ -4,7 +4,7 @@
 }
 
 .myFavorites {
-  font-size: 32px;
+  font-size: 27px;
   margin-bottom: 24px;
 }
 
@@ -13,7 +13,7 @@
 }
 
 .favorites-page section h2 {
-  font-size: 24px;
+  font-size: 23px;
   margin: 0 0 16px;
 }
 
@@ -26,37 +26,7 @@
 .favorite-card {
   display: flex;
   flex-direction: column;
-  background: #fff;
-  border: 1px solid rgba(0,0,0,0.1);
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 1px 3px rgba(0,0,0,.12);
-}
-
-.favorite-card:hover {
-  transform: translateY(-4px);
-}
-
-.favorite-card h3 {
-  font-size: 18px;
-  line-height: 24px;
-  margin: 12px;
-}
-
-.favorite-card button {
-  margin: 0 12px 12px;
-  padding: 8px 14px;
-  border-radius: 999px;
-  border: none;
-  background: rgb(120,148,33);
-  color: #fff;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-
-.favorite-card button:hover {
-  background: rgb(100,125,25);
+  border-radius: 12px; 
 }
 
 @media (max-width: 1000px) {
