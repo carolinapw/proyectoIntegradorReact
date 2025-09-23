@@ -55,9 +55,6 @@ class SearchResults extends Component{
     if(this.state.data.length===0){
        return <p>No se encontraron resultados</p>
     }
-    if(!this.state.data){
-       return <p>No se encontraron resultados</p>
-    }
     return (
       <>
         <h1>Resultados de búsqueda</h1>
