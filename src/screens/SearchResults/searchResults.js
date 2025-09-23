@@ -18,41 +18,33 @@ class SearchResults extends Component{
  componentDidMount() {
     let type = this.props.match.params.type
     let query = this.props.match.params.query
-
-    this.setState({ cargando: true })
   
     if (type === "movie") {
       fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}&include_adult=false&language=en-US&page=1`)
         .then(res => res.json())
         .then(data => {
           this.setState({
-            data: (data.results || []),
+            data: data.results,
             type: type,
             query: query,
             cargando: false
           });
         }
         ) 
-        .catch(err => {
-          console.log(err);
-          this.setState({ cargando: false, data: [] });
-        });
+        .catch(err => console.log(err));
     } else {
       fetch(`https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&query=${query}&include_adult=false&language=en-US&page=1`)
         .then(res => res.json())
         .then(data => {
           this.setState({
-            data: (data.results || []),
+            data: data.results,
             type: type,
             query: query,
             cargando: false
           });
         }
         )
-        .catch(err => {
-          console.log(err);
-          this.setState({ cargando: false, data: [] });
-        });
+        .catch(err => console.log(err));
     }
   }
      
